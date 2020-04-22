@@ -9,12 +9,12 @@
     <packaging>pom</packaging>
     <version>2.2.7</version>
 
-    <name>langx</name>
+    <name>nettydemo</name>
 
     <description>
-        Java lang extensions，a supplement to , replacement  of a Guava, commons-lang
+        Netty + Thrift demo
     </description>
-    <url>https://github.com/fangjinuo/langx-java</url>
+    <url>https://github.com/fangjinuo/nettydemo</url>
     <developers>
         <developer>
             <id>jinuo.fang</id>
@@ -35,21 +35,20 @@
     </distributionManagement>
     <scm>
         <tag>${project.version}</tag>
-        <url>https://github.com/fangjinuo/langx-java.git</url>
-        <connection>https://github.com/fangjinuo/langx-java.git</connection>
-        <developerConnection>https://github.com/fangjinuo/langx-java.git</developerConnection>
+        <url>https://github.com/fangjinuo/nettydemo.git</url>
+        <connection>https://github.com/fangjinuo/nettydemo.git</connection>
+        <developerConnection>https://github.com/fangjinuo/nettydemo.git</developerConnection>
     </scm>
     <licenses>
         <license>
             <name>MIT</name>
-            <url>https://github.com/fangjinuo/langx-java/blob/master/LICENSE</url>
+            <url>https://github.com/fangjinuo/nettydemo/blob/master/LICENSE</url>
             <distribution>manual</distribution>
         </license>
     </licenses>
 
     <modules>
-        <module>langx-java</module>
-        <module>langx-java8</module>
+        <module>demo0</module>
     </modules>
     <dependencyManagement>
         <dependencies>
