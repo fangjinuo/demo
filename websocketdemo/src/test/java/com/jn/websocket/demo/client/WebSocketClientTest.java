@@ -19,6 +19,7 @@ public class WebSocketClientTest {
     static {
         webSocketClient = new StandardWebSocketClient();
         webSocketStompClient = new WebSocketStompClient(webSocketClient);
+        //new MappingJackson2MessageConverter()
         webSocketStompClient.setMessageConverter(new MappingJackson2MessageConverter());
         taskScheduler = new ThreadPoolTaskScheduler();
         taskScheduler.setPoolSize(100);

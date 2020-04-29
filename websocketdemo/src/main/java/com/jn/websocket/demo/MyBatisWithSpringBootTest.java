@@ -18,7 +18,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.jn.websocket.demo","com.jn.audit.spring."})
+@SpringBootApplication(scanBasePackages = {"com.jn.websocket.demo","com.jn.audit.spring"})
 @MapperScan("com.jn.websocket.demo.common.dao")
 public class MyBatisWithSpringBootTest {
     public static void main(String[] args) {
