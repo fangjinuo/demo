@@ -1,6 +1,7 @@
 package com.jn.websocket.demo.client;
 
 import org.junit.Test;
+import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.converter.StringMessageConverter;
 import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.messaging.simp.stomp.StompSessionHandler;
@@ -18,18 +19,18 @@ public class WebSocketClientTest {
     static {
         webSocketClient = new StandardWebSocketClient();
         webSocketStompClient = new WebSocketStompClient(webSocketClient);
-        webSocketStompClient.setMessageConverter(new StringMessageConverter());
+        webSocketStompClient.setMessageConverter(new MappingJackson2MessageConverter());
         taskScheduler = new ThreadPoolTaskScheduler();
         taskScheduler.setPoolSize(100);
         webSocketStompClient.setTaskScheduler(taskScheduler);
     }
 
     @Test
-    public void test() {
-        String url = "ws://localhost:8088/websocketApp";
+    public void test() throws Throwable{
+        String url = "ws://localhost:8088/console/websocket";
         StompSessionHandler sessionHandler = new MyStompSessionHandler();
         ListenableFuture<StompSession> sessionFeature = webSocketStompClient.connect(url, sessionHandler);
-
+        Thread.sleep(600000);
     }
 
 }

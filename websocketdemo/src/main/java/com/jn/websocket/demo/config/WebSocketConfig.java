@@ -11,12 +11,16 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/messageTopics");
+        // endpoint will in the url
+        registry.addEndpoint("/websocket");
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
+        // general methodHandler will match the prefix, you @MessageMapping will match it
         registry.setApplicationDestinationPrefixes("/websocketApp");
+
+        //  the topic,queue etc
         registry.enableSimpleBroker("/topic", "/queue");
     }
 }
