@@ -1,0 +1,47 @@
+server:
+  port: 8088
+
+mybatis:
+  type-aliases-package: com.jn.audit.examples.springmvcdemo.common.model
+  mapper-locations: classpath*:mapper/*.xml
+
+spring:
+  datasource:
+    url: jdbc:h2:~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+sqlhelper:
+  mybatis:
+    instrumentor:
+      name: mybatis
+      cache-instrumented-sql: true
+      subquery-paging-start-flag: "[PAGING_START]"
+      subquery-paging-end-flag: "[PAGING_END]"
+logging:
+  level:
+    root: debug
+    com:
+      jn:
+        sqlhelper:
+          examples:
+            common:
+              dao: trace
+
+operation:
+  definition:
+    location: classpath:/operation.yml
+    reload-interval-in-seconds: 60
+audit:
+  enabled: true
+  async-mode: false
+  topics: [DEFAULT, LOGIN_LOGOUT]
+  topic-configs:
+    - name: DEFAULT
+      ring-buffer-size: 1024
+      producer-type: MULTI
+    - name: LOGIN_LOGOUT
+      ring-buffer-size: 512
+      producer-type: SINGLE
+  http-interceptor-patterns:
+    - /consumers/**
+    - /users/**
