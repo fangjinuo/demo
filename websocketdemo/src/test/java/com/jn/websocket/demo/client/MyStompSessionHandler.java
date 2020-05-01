@@ -1,11 +1,12 @@
 package com.jn.websocket.demo.client;
 
-import com.jn.langx.util.io.Charsets;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.simp.stomp.*;
+import org.springframework.messaging.simp.stomp.StompCommand;
+import org.springframework.messaging.simp.stomp.StompHeaders;
+import org.springframework.messaging.simp.stomp.StompSession;
+import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
 
 import java.lang.reflect.Type;
-import java.nio.charset.Charset;
 
 public class MyStompSessionHandler extends StompSessionHandlerAdapter {
     @Override
@@ -15,16 +16,16 @@ public class MyStompSessionHandler extends StompSessionHandlerAdapter {
 
     @Override
     public void handleFrame(StompHeaders headers, Object payload) {
-        if(payload instanceof String){
+        if (payload instanceof String) {
             System.out.println(payload);
             return;
         }
-        if(payload instanceof Message){
-            System.out.println((Message)payload);
+        if (payload instanceof Message) {
+            System.out.println((Message) payload);
             return;
         }
 
-        if(payload==null){
+        if (payload == null) {
             System.out.println("null");
         }
         System.out.println("can't got");
@@ -33,14 +34,14 @@ public class MyStompSessionHandler extends StompSessionHandlerAdapter {
     @Override
     public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
 
-    //    headers.add("selector","");
+        //    headers.add("selector","");
         session.subscribe("/topic", this);
         session.subscribe("/topic/myController/greeting", this);
         session.subscribe("/topic/myController/greeting333", this);
 
         StompHeaders headers = new StompHeaders();
         headers.setDestination("/topic/myController/greeting2");
-        headers.add("selector","headers['nativeHeaders']['__destination__'][0]=='/topic/myController/greeting2/node_id_001'");
+        headers.add("selector", "headers['nativeHeaders']['__destination__'][0]=='/topic/myController/greeting2/node_id_001'");
         session.subscribe(headers, this);
 
 
