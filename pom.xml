@@ -50,6 +50,7 @@
     <modules>
         <module>demo0</module>
         <module>websocketdemo</module>
+        <module>jschdemo</module>
     </modules>
 
 
